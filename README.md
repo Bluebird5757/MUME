@@ -28,3 +28,9 @@ This project was built as part of an internship assignment.
 - **Component-based architecture** – separation of concerns
 
 ### Folder Structure
+src/
+├── api/ # Search logic
+├── data/ # Mock song dataset
+├── screens/ # App screens
+├── components/ # Reusable UI components
+├── store/ # Zustand stores (player & queue)
