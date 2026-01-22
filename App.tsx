@@ -1,20 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { View, StatusBar } from "react-native";
+import { useState } from "react";
+import HomeScreen from "./src/screens/HomeScreen";
+import MiniPlayer from "./src/components/MiniPlayer";
+import QueueScreen from "./src/screens/QueueScreen";
 
 export default function App() {
+  const [showQueue, setShowQueue] = useState(false);
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      <StatusBar barStyle="light-content" />
+      <View style={{ flex: 1, backgroundColor: "#121212" }}>
+        <HomeScreen />
+        <MiniPlayer onOpenQueue={() => setShowQueue(true)} />
+
+        {showQueue && (
+          <QueueScreen onClose={() => setShowQueue(false)} />
+        )}
+      </View>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
